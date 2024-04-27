@@ -1,0 +1,64 @@
+//for(초기화; 종료조건; 반복실행){
+//    반복적으로 실행될 구문
+//}
+
+package org.opentutorials.javatutorials.loop;
+ 
+public class ForDemo {
+ 
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("Coding Everybody " + i);
+        }
+ 
+    }
+ 
+}
+Coding Everybody 0
+Coding Everybody 1
+Coding Everybody 2
+Coding Everybody 3
+Coding Everybody 4
+Coding Everybody 5
+Coding Everybody 6
+Coding Everybody 7
+Coding Everybody 8
+Coding Everybody 9
+
+//break
+//반복작업을 중간에 중단시키고 싶다면 break를 사용하면 된다.
+
+package org.opentutorials.javatutorials.loop;
+ 
+public class BreakDemo {
+ 
+    public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            if (i == 5)
+                break;
+            System.out.println("Coding Everybody " + i);
+        }
+ 
+    }
+ 
+}
+
+coding everybody 0
+coding everybody 1
+coding everybody 2
+coding everybody 3
+coding everybody 4
+
+
+
+public static void main(String[] args) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.println(i + "" + j);
+            }
+        }
+ 
+    }
+
+
+//00~99까지 출력이 된다 
