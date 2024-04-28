@@ -1,0 +1,20 @@
+//매개변수가 있는 생성자가 있을 때는 자동으로 기본 생성자를 만들어주지 않는다. 
+//따라서 위의 예제는 존재하지 않는 생성자를 호출하고 있다. 이 문제를 해결하기 위해서는 아래와 같이 기본 생성자를 추가해줘야 한다.
+
+package org.opentutorials.javatutorials.Inheritance.example4;
+public class ConstructorDemo {
+    public ConstructorDemo(){}                 //기본 생성자를 만들어줘야 함
+    public ConstructorDemo(int param1) {}      //매개변수가 있는 생성자
+    public static void main(String[] args) {
+        ConstructorDemo  c = new ConstructorDemo();
+    }
+}
+
+ //하지만 super()를 사용하면  이렇게 하면 부모 클래스의 기본 생성자가 없어져도 오류가 발생하지 않는다.그래도 기본 생성자 만들어주기
+
+class SubstractionableCalculator extends Calculator {
+    public SubstractionableCalculator(int left, int right) {
+        super(left, right); 
+    }
+
+//하위 클래스의 생성자에서 super를 사용할 때 주의할 점은 super가 가장 먼저 나타나야 한다는 점
