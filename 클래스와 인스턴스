@@ -1,0 +1,77 @@
+//클래스는 설계도,클래스는 연관되어 있는 변수와 메소드의 집합이다.
+//인스턴스는 부품 이라고 생각
+//클래스가 구체적인 실체인 인스턴스가 되었을 때 객체라고 부른다.
+//하나의 클래스를 바탕으로 서로 다른 상태를 가진 인스턴스를 만들면 서로 다른 행동을 하게 된다
+
+//객체지향 이전의 코딩
+package org.opentutorials.javatutorials.object;
+ 
+public class ClaculatorDemo3 {
+ 
+    public static void avg(int left, int right) {
+        System.out.println((left + right) / 2);
+    }
+ 
+    public static void sum(int left, int right) {
+        System.out.println(left + right);
+    }
+ 
+    public static void main(String[] args) {
+        int left, right;
+ 
+        left = 10;
+        right = 20;
+ 
+        sum(left, right);
+        avg(left, right);                         //이 부분에서 코드가 길어지면 유지보수가 어려워질 수 있다.
+ 
+        left = 20;
+        right = 40;
+ 
+        sum(left, right);
+        avg(left, right);
+    }
+ 
+}
+
+
+//객체 사용
+
+package org.opentutorials.javatutorials.object;
+ 
+class Calculator{                               //calculator 클래스 
+    int left, right;
+      
+    public void setOprands(int left, int right){
+        this.left = left;                        // this는 클래스를 통해서 만들어진 인스턴스 자신을 가리킨다.
+        this.right = right;                      //위의 코드에서 left는 매개변수이고 이 변수는 setOprands 밖에서는 접근 할 수 없다. 
+                                                 //반면에 this.left는 43행에서 선언한 변수에 값을 설정하는 것이고 메소드 밖에서 선언한 변수는 인스턴스 내의 모든 메소드에서 접근이 가능하다.
+    }
+      
+    public void sum(){
+        System.out.println(this.left+this.right);
+    }
+      
+    public void avg(){
+        System.out.println((this.left+this.right)/2);
+    }
+}
+  
+public class CalculatorDemo4 {
+      
+    public static void main(String[] args) {
+          
+        Calculator c1 = new Calculator();        //c1이라는 인스턴스 생성,new Calculator()은 클래스 Calculator를 구체적인 제품으로 만드는 명령
+        c1.setOprands(10, 20);
+        c1.sum();       
+        c1.avg();       
+          
+        Calculator c2 = new Calculator();      //c2라는 인스턴스
+        c2.setOprands(20, 40);
+        c2.sum();       
+        c2.avg();
+    }
+  
+}
+
+
