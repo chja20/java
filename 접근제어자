@@ -1,0 +1,45 @@
+class A {
+    public String y(){
+        return "public void y()";
+    }
+    private String z(){                    // private은 클래스(A) 밖에서는 접근 할 수 없다. 바로 이 private의 자리에 오는 것들을 접근 제어자(access modifier)라고 한다
+        return "public void z()";
+    }
+    public String x(){
+        return z();
+    }
+}
+public class AccessDemo1 {
+    public static void main(String[] args) {
+        A a = new A();
+        System.out.println(a.y());
+                                        // 아래 코드는 오류가 발생한다.
+        //System.out.println(a.z());
+        System.out.println(a.x());
+    }
+}
+
+
+//접근제어자를 사용하는 이유
+//접근 제어자를 사용하는 또 다른 이유는 사용자에게 객체를 조작 할 수 있는 수단만을 제공함으로서 결과적으로 객체의 사용에 집중 할 수 있도록 돕기 위함이다.
+
+                        	public	protected	default	private
+같은 패키지, 같은 클래스	    허용	허용	허용	허용
+같은 패키지, 상속 관계	      허용	허용	허용	불용
+같은 패키지, 상속 관계 아님	  허용	허용	허용	불용
+다른 패키지, 상속 관계	      허용	허용	불용	불용
+다른 패키지, 상속 관계 아님	  허용	불용	불용	불용
+
+//지금까지는 클래스 멤버의 접근제어자였고
+//이제는 클래스 접근제어자 이다.
+
+package org.opentutorials.javatutorials.accessmodifier.outter;
+import org.opentutorials.javatutorials.accessmodifier.inner.*;
+public class ClassAccessModifierOuterPackage {
+    PublicClass publicClass = new PublicClass();
+    //DefaultClass defaultClass = new DefaultClass();     //디폴트클래스는 inner패키지 안에있기때문에 다른 패키지에 import됐더라도 에러가 난다
+}
+
+//즉 접근 제어자가 public인 클래스는 다른 패키지의 클래스에서도 사용할 수 있고, default인 경우는 같은 패키지에서만 사용 가능하다.
+
+//중요한 규칙 -  public 클래스가 포함된 소소코드는 public 클래스의 클래스 명과 소스코드의 파일명이 같아야 한다 ex)코드 이름이  PublicNameDemo.java이면 public class PublicNameDemo {}이어야 한다.
