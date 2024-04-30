@@ -1,0 +1,67 @@
+//추상 클래스는 상속을 강제하기 위한 것이다.
+//본체가 있는 메소드는 abstract 키워드를 가질 수 없다.
+//public abstract int c(){System.out.println("Hello")}  - 에러
+//추상 클래스 내에는 추상 메소드가 아닌 메소드가 존재 할 수 있다. 
+
+package org.opentutorials.javatutorials.abstractclass.example2;
+abstract class A{
+    public abstract int b();              //하위클래스에서 b()가 실행되게 함
+    public void d(){
+        System.out.println("world");
+    }
+}
+class B extends A{
+    public int b(){return 1;}
+}
+public class AbstractDemo {
+    public static void main(String[] args) {
+        B obj = new B();
+        System.out.println(obj.b());
+    }
+}
+
+//클래스 B는 클래스 A를 상속했다. 그리고 클래스 A의 추상 메소드인 메소드 b를 오버라이딩하고 있다. 그 결과 클래스 A를 사용할 수 있었다.
+
+
+package org.opentutorials.javatutorials.abstractclass.example3;
+abstract class Calculator{
+    int left, right;
+    public void setOprands(int left, int right){
+        this.left = left;
+        this.right = right;
+    } 
+    public abstract void sum();  
+    public abstract void avg();            //하위 클래스에서 sum()과 avg() 실행되게 함
+    public void run(){
+        sum();
+        avg();
+    }
+}
+class CalculatorDecoPlus extends Calculator {
+    public void sum(){
+        System.out.println("+ sum :"+(this.left+this.right));         //this.left+this.right같이 공통되는 부분은 부모클래스에서 int _sum 등으로 묶는다
+    }
+    public void avg(){
+        System.out.println("+ avg :"+(this.left+this.right)/2);
+    }
+} 
+class CalculatorDecoMinus extends Calculator {
+    public void sum(){
+        System.out.println("- sum :"+(this.left+this.right));         //공통되는 부분 
+    }
+    public void avg(){
+        System.out.println("- avg :"+(this.left+this.right)/2);
+    }
+} 
+public class CalculatorDemo {
+    public static void main(String[] args) { 
+        CalculatorDecoPlus c1 = new CalculatorDecoPlus();
+        c1.setOprands(10, 20);
+        c1.run();                             //런이 실행되면 abstract class Calculator에서 run이 실행되지만 sum과avg과 추상메소드이기 떄문에 하위 클래스인 class CalculatorDecoPlus extends Calculator에서 
+                                              //실행된다.
+        CalculatorDecoMinus c2 = new CalculatorDecoMinus();
+        c2.setOprands(10, 20);
+        c2.run();
+    }
+   
+}
